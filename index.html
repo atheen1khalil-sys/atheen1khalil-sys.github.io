@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atheen Khalil | Cybersecurity & Systems Specialist</title>
+    <meta name="description" content="Portfolio of Atheen Khalil: cybersecurity, network defense, OSINT and mobile hardware diagnostics.">
+    <meta property="og:title" content="Atheen Khalil | Cybersecurity & Systems Specialist">
+    <meta property="og:description" content="Cybersecurity, network defense, OSINT and mobile hardware diagnostics.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#070a0f">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23070a0f'/%3E%3Cpath d='M8 10l8 6-8 6' fill='none' stroke='%2300f3ff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M18 23h7' stroke='%2300ff9d' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            black: '#070a0f',
+                            dark: '#0d131e',
+                            card: '#131c2e',
+                            border: '#1e2d4a',
+                            cyan: '#00f3ff',
+                            green: '#00ff9d',
+                            red: '#ff0055',
+                            dim: '#64748b'
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['Fira Code', 'Courier New', 'monospace'],
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for Fira Code & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #070a0f;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Matrix Grid Background */
+        .bg-cyber-grid {
+            background-image: linear-gradient(to right, rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* Neon Glow Utility Effects */
+        .glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.25);
+        }
+        .glow-cyan-hover:hover {
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.4);
+        }
+        .glow-green {
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.25);
+        }
+        .text-glow-cyan {
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
+        }
+        .text-glow-green {
+            text-shadow: 0 0 10px rgba(0, 255, 157, 0.6);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070a0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e2d4a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f3ff;
+        }
+
+        /* Scanline animation overlay */
+        .scanline {
+            width: 100%;
+            height: 100%;
+            height: 3px;
+            background: rgba(0, 243, 255, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            animation: scanline 8s linear infinite;
+            z-index: 99;
+        }
+        @keyframes scanline {
+            0% { top: -5%; }
+            100% { top: 105%; }
+        }
+    </style>
+</head>
+<body class="bg-cyber-black bg-cyber-grid antialiased min-h-screen flex flex-col justify-between selection:bg-cyber-cyan selection:text-cyber-black">
+
+    <!-- Subtle Scanline Visual Effect -->
+    <div class="scanline"></div>
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 bg-cyber-black/90 backdrop-blur-md border-b border-cyber-border/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            
+            <!-- Logo & Operator Title -->
+            <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 rounded-full bg-cyber-green animate-pulse"></div>
+                <a href="#hero" class="font-mono text-lg font-bold text-white tracking-wider flex items-center gap-2">
+                    <span class="text-cyber-cyan">&gt;</span> ATHEEN_KHALIL
+                </a>
+            </div>
+
+            <!-- Status Indicator Widget (Desktop) -->
+            <div class="hidden md:flex items-center gap-3 bg-cyber-dark/80 px-3 py-1.5 rounded-full border border-cyber-border font-mono text-xs">
+                <i class="fa-solid font-bold text-cyber-green fa-shield-halved"></i>
+                <span class="text-gray-400">STATUS:</span>
+                <span class="text-cyber-green font-semibold tracking-wider">ONLINE // SECURE</span>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 font-mono text-sm">
+                <a href="#about" class="text-gray-300 hover:text-cyber-cyan transition-colors">01.About</a>
+                <a href="#skills" class="text-gray-300 hover:text-cyber-cyan transition-colors">02.Arsenal</a>
+                <a href="#projects" class="text-gray-300 hover:text-cyber-cyan transition-colors">03.Projects</a>
+                <a href="#credentials" class="text-gray-300 hover:text-cyber-cyan transition-colors">04.Credentials</a>
+                <a href="#terminal" class="px-4 py-1.5 rounded border border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan/10 transition-all font-semibold glow-cyan-hover">CLI_Terminal</a>
+            </nav>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-cyber-cyan focus:outline-none p-2">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cyber-dark border-b border-cyber-border px-4 py-4 space-y-3 font-mono text-sm">
+            <a href="#about" class="block text-gray-300 hover:text-cyber-cyan mobile-nav-link">01. About</a>
+            <a href="#skills" class="block text-gray-300 hover:text-cyber-cyan mobile-nav-link">02. Arsenal</a>
+            <a href="#projects" class="block text-gray-300 hover:text-cyber-cyan mobile-nav-link">03. Projects</a>
+            <a href="#credentials" class="block text-gray-300 hover:text-cyber-cyan mobile-nav-link">04. Credentials</a>
+            <a href="#terminal" class="block text-cyber-cyan font-bold mobile-nav-link">&gt; Open Terminal CLI</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- HERO SECTION -->
+        <section id="hero" class="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-12">
+            
+            <!-- Left Info Area -->
+            <div class="flex-1 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-cyan/10 border border-cyber-cyan/30 text-cyber-cyan font-mono text-xs font-semibold">
+                    <i class="fa-solid fa-terminal"></i> CYBERSECURITY ANALYST & SYSTEMS SPECIALIST
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+                    Securing Systems, <br class="hidden sm:inline">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-green text-glow-cyan">
+                        Analyzing Threats & Infrastructure
+                    </span>
+                </h1>
+
+                <p class="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0">
+                    Specialized in penetration testing, network defense, OSINT investigations, and hardware-level mobile diagnostics. Dedicated to building resilient security posture and mitigating vulnerabilities.
+                </p>
+
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4 font-mono text-sm">
+                    <a href="#projects" class="px-6 py-3 rounded-md bg-cyber-cyan text-cyber-black font-bold hover:bg-cyan-300 transition-all glow-cyan flex items-center gap-2">
+                        <i class="fa-solid fa-folder-open"></i> Explore Arsenal & Write-ups
+                    </a>
+                    <a href="#terminal" class="px-6 py-3 rounded-md bg-cyber-dark border border-cyber-border text-gray-200 hover:border-cyber-cyan hover:text-cyber-cyan transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-code"></i> Run Terminal CLI
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Terminal Box Simulator -->
+            <div class="w-full lg:w-5/12">
+                <div class="bg-cyber-dark rounded-xl border border-cyber-border shadow-2xl overflow-hidden font-mono text-sm">
+                    <!-- Terminal Top Bar -->
+                    <div class="bg-cyber-card px-4 py-3 border-b border-cyber-border flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                        </div>
+                        <span class="text-xs text-gray-400 font-semibold">atheen@security-node:~</span>
+                        <i class="fa-solid fa-lock text-xs text-cyber-cyan"></i>
+                    </div>
+                    <!-- Terminal Output Window -->
+                    <div class="p-6 space-y-4 bg-cyber-black/90 min-h-[300px]">
+                        <div>
+                            <span class="text-cyber-green">atheen@security-node</span>:<span class="text-cyber-cyan">~</span>$ whoami
+                            <div class="text-gray-300 mt-1 pl-4 border-l-2 border-cyber-cyan">
+                                Atheen Khalil | Cybersecurity & Hardware Systems Specialist
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="text-cyber-green">atheen@security-node</span>:<span class="text-cyber-cyan">~</span>$ cat core_competencies.json
+                            <div class="text-cyber-cyan mt-1 pl-4 text-xs sm:text-sm">
+                                {<br>
+                                &nbsp;&nbsp;"offensive_sec": ["Network PenTesting", "OSINT", "Burp Suite"],<br>
+                                &nbsp;&nbsp;"defensive_sec": ["Threat Monitoring", "Wireshark", "Syslog"],<br>
+                                &nbsp;&nbsp;"hardware_sys": ["Mobile Diagnostics", "Linux Kernel Tuning"]<br>
+                                }
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="text-cyber-green">atheen@security-node</span>:<span class="text-cyber-cyan">~</span>$ status --check
+                            <div class="text-gray-300 mt-1 flex items-center gap-2">
+                                <span class="inline-block w-2 h-2 rounded-full bg-cyber-green animate-ping"></span>
+                                <span class="text-cyber-green">All defensive security layers operational.</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-1 text-cyber-green pt-2">
+                            <span>atheen@security-node:~$</span>
+                            <span class="animate-pulse font-bold">_</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT & BIOGRAPHY SECTION -->
+        <section id="about" class="py-16 bg-cyber-dark/40 border-y border-cyber-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-xs font-mono font-semibold text-cyber-cyan tracking-widest uppercase mb-2">01. OPERATOR PROFILE</h2>
+                    <p class="text-3xl font-bold text-white">About Atheen Khalil</p>
+                    <div class="w-16 h-1 bg-cyber-cyan mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Bio Card 1 -->
+                    <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border hover:border-cyber-cyan/50 transition-all">
+                        <div class="w-12 h-12 rounded-lg bg-cyber-cyan/10 flex items-center justify-center text-cyber-cyan mb-4 text-xl">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Security Analysis</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Passionate about proactive defense and vulnerability research. Proficient in identifying security gaps, auditing network traffic, and executing threat assessments.
+                        </p>
+                    </div>
+
+                    <!-- Bio Card 2 -->
+                    <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border hover:border-cyber-cyan/50 transition-all">
+                        <div class="w-12 h-12 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green mb-4 text-xl">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Hardware & Systems</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Deep background in hardware-level diagnostics and mobile system architecture. Experienced in low-level troubleshooting, firmware analysis, and operating system optimizations.
+                        </p>
+                    </div>
+
+                    <!-- Bio Card 3 -->
+                    <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border hover:border-cyber-cyan/50 transition-all">
+                        <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 mb-4 text-xl">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Global Readiness</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Equipped with Computer Science Institute credentials and advanced English proficiency. Focused on international security compliance and collaboration.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS & ARSENAL MATRIX -->
+        <section id="skills" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-mono font-semibold text-cyber-cyan tracking-widest uppercase mb-2">02. TECHNICAL CAPABILITIES</h2>
+                <p class="text-3xl font-bold text-white">Skills & Security Arsenal</p>
+                <div class="w-16 h-1 bg-cyber-green mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div id="skills-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8"></div>
+
+            <!-- Tool Badges Arsenal Grid -->
+            <div class="mt-10 bg-cyber-card p-6 rounded-xl border border-cyber-border">
+                <h4 class="text-xs font-mono text-gray-400 uppercase tracking-widest mb-4">FAVORITE ENVIRONMENT & TOOLKIT</h4>
+                <div id="tools-list" class="flex flex-wrap gap-3 font-mono text-xs"></div>
+            </div>
+        </section>
+
+        <!-- PROJECTS & WRITE-UPS SECTION -->
+        <section id="projects" class="py-16 bg-cyber-dark/30 border-t border-cyber-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <h2 class="text-xs font-mono font-semibold text-cyber-cyan tracking-widest uppercase mb-2">03. CASE STUDIES & LABS</h2>
+                        <p class="text-3xl font-bold text-white">Security Write-ups & Projects</p>
+                    </div>
+
+                    <!-- Search Bar & Filter Controls -->
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <div class="relative">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-500 text-sm"></i>
+                            <input type="text" id="project-search" placeholder="Search write-ups..." 
+                                class="bg-cyber-black border border-cyber-border rounded-md pl-9 pr-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-cyber-cyan font-mono w-full sm:w-64">
+                        </div>
+                        <div class="flex rounded-md bg-cyber-black p-1 border border-cyber-border font-mono text-xs">
+                            <button class="filter-btn active px-3 py-1 rounded text-cyber-cyan bg-cyber-card" data-filter="all">All</button>
+                            <button class="filter-btn px-3 py-1 rounded text-gray-400 hover:text-white" data-filter="network">Network</button>
+                            <button class="filter-btn px-3 py-1 rounded text-gray-400 hover:text-white" data-filter="osint">OSINT</button>
+                            <button class="filter-btn px-3 py-1 rounded text-gray-400 hover:text-white" data-filter="hardware">Hardware</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Grid -->
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Project cards will be populated via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- CREDENTIALS & QUALIFICATIONS -->
+        <section id="credentials" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-mono font-semibold text-cyber-cyan tracking-widest uppercase mb-2">04. QUALIFICATIONS</h2>
+                <p class="text-3xl font-bold text-white">Certifications & Education</p>
+                <div class="w-16 h-1 bg-cyber-cyan mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div id="credentials-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        </section>
+
+        <!-- INTERACTIVE TERMINAL & CONTACT SECTION -->
+        <section id="terminal" class="py-16 bg-cyber-dark/50 border-t border-cyber-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+                    
+                    <!-- Left: Interactive Terminal CLI Playground -->
+                    <div>
+                        <h2 class="text-xs font-mono font-semibold text-cyber-cyan tracking-widest uppercase mb-2">CLI COMMAND INTERFACE</h2>
+                        <h3 class="text-2xl font-bold text-white mb-4">Interactive Terminal Playground</h3>
+                        <p class="text-gray-400 text-sm mb-6">
+                            Type <code class="text-cyber-cyan font-mono">help</code> to list available commands or test custom system commands.
+                        </p>
+
+                        <div class="bg-cyber-black rounded-xl border border-cyber-border shadow-2xl overflow-hidden font-mono text-xs sm:text-sm">
+                            <div class="bg-cyber-card px-4 py-2 border-b border-cyber-border flex items-center justify-between text-gray-400">
+                                <span class="flex items-center gap-2"><i class="fa-solid fa-terminal text-cyber-green"></i> bash - Atheen Terminal</span>
+                                <span class="text-xs">v2.4-secure</span>
+                            </div>
+                            
+                            <!-- Interactive Console Buffer -->
+                            <div id="cli-console" class="p-4 h-64 overflow-y-auto space-y-2 text-gray-300">
+                                <div class="text-gray-500">Atheen Security Shell v2.4 initialized. Type 'help' for commands.</div>
+                            </div>
+
+                            <!-- Input Prompt -->
+                            <form id="cli-form" class="flex border-t border-cyber-border bg-cyber-dark/80 px-4 py-2">
+                                <span class="text-cyber-green mr-2 self-center">&gt;</span>
+                                <input type="text" id="cli-input" class="bg-transparent flex-1 focus:outline-none text-cyber-cyan font-mono" placeholder="type command here..." autocomplete="off">
+                                <button type="submit" class="text-xs bg-cyber-card px-3 py-1 text-gray-300 hover:text-cyber-cyan border border-cyber-border rounded">Run</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Right: Direct Contact Panel -->
+                    <div class="bg-cyber-card p-8 rounded-xl border border-cyber-border">
+                        <h3 class="text-2xl font-bold text-white mb-2">Initiate Contact</h3>
+                        <p class="text-gray-400 text-sm mb-6">Have an inquiry, security task, or opportunity? Send a secure message directly.</p>
+
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-mono text-gray-400 mb-1">CALLSIGN / NAME</label>
+                                <input type="text" name="name" autocomplete="name" required class="w-full bg-cyber-black border border-cyber-border rounded px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-cyber-cyan">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-gray-400 mb-1">EMAIL ADDRESS</label>
+                                <input type="email" name="email" autocomplete="email" required class="w-full bg-cyber-black border border-cyber-border rounded px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-cyber-cyan">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-gray-400 mb-1">MESSAGE / TRANSMISSION</label>
+                                <textarea rows="4" name="message" required class="w-full bg-cyber-black border border-cyber-border rounded px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-cyber-cyan"></textarea>
+                            </div>
+                            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+                            <button type="submit" class="w-full py-3 rounded bg-cyber-cyan text-cyber-black font-mono font-bold hover:bg-cyan-300 transition-all glow-cyan flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> TRANSMIT MESSAGE
+                            </button>
+                        </form>
+                        <div id="contact-alert" class="hidden mt-4 p-3 rounded bg-cyber-green/10 border border-cyber-green text-cyber-green font-mono text-xs">
+                                                    </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-cyber-black border-t border-cyber-border py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-xs text-gray-500">
+            <div>
+                &copy; 2026 Atheen Khalil. All rights reserved. Built for Cybersecurity Portfolio.
+            </div>
+            <div id="social-links" class="flex space-x-6 text-gray-400 text-lg"></div>
+        </div>
+        </div>
+    </footer>
+
+    <!-- WRITE-UP DETAILED MODAL -->
+    <div id="project-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-cyber-card border border-cyber-cyan/50 rounded-xl max-w-2xl w-full p-6 space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-cyber-border pb-3">
+                <h3 id="modal-title" class="text-xl font-mono font-bold text-cyber-cyan">Write-up Title</h3>
+                <button id="modal-close" class="text-gray-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="flex gap-2 font-mono text-xs" id="modal-tags">
+                <!-- Tags added dynamically -->
+            </div>
+            <div id="modal-content" class="text-gray-300 text-sm space-y-3 leading-relaxed">
+                <!-- Modal Body -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+// =====================================================================
+//  CONFIG  —  كل شي بتحب تعدله بالموقع موجود هون
+//  (عدّل النصوص والروابط هون، ما في داعي تلمس باقي الكود)
+// =====================================================================
+/*CONFIG_START*/const CONFIG = {
+    "contact": {
+        "email": "atheen1khalil@gmail.com",
+        "formEndpoint": "https://formspree.io/f/mrppwgap"
+    },
+    "social": {
+        "github": "",
+        "linkedin": ""
+    },
+    "skills": [
+        {
+            "title": "Network Security & Penetration Testing",
+            "icon": "fa-network-wired",
+            "color": "cyan",
+            "items": [
+                {
+                    "label": "Packet Analysis & Sniffing (Wireshark, Tshark)",
+                    "value": 90,
+                    "color": "green"
+                },
+                {
+                    "label": "Port Scanning & Reconnaissance (Nmap, Masscan)",
+                    "value": 95,
+                    "color": "cyan"
+                },
+                {
+                    "label": "Web Vulnerability Auditing (Burp Suite, OWASP)",
+                    "value": 85,
+                    "color": "cyan"
+                }
+            ]
+        },
+        {
+            "title": "OSINT & Incident Analysis",
+            "icon": "fa-magnifying-glass-location",
+            "color": "green",
+            "items": [
+                {
+                    "label": "Open Source Intelligence (Maltego, Recon-ng)",
+                    "value": 90,
+                    "color": "green"
+                },
+                {
+                    "label": "Log & Endpoint Diagnostics",
+                    "value": 88,
+                    "color": "cyan"
+                },
+                {
+                    "label": "Hardware & Mobile System Repairs",
+                    "value": 95,
+                    "color": "green"
+                }
+            ]
+        }
+    ],
+    "tools": [
+        {
+            "icon": "fa-brands fa-linux",
+            "label": "Kali Linux / Arch",
+            "color": "cyan"
+        },
+        {
+            "icon": "fa-solid fa-bolt",
+            "label": "Wireshark",
+            "color": "green"
+        },
+        {
+            "icon": "fa-solid fa-bug",
+            "label": "Burp Suite",
+            "color": "cyan"
+        },
+        {
+            "icon": "fa-solid fa-terminal",
+            "label": "Nmap",
+            "color": "gray"
+        },
+        {
+            "icon": "fa-solid fa-mobile-screen",
+            "label": "Frida / ADB",
+            "color": "green"
+        },
+        {
+            "icon": "fa-solid fa-code-branch",
+            "label": "Metasploit Framework",
+            "color": "purple"
+        },
+        {
+            "icon": "fa-solid fa-shield",
+            "label": "Bash / Python Scripting",
+            "color": "cyan"
+        }
+    ],
+    "credentials": [
+        {
+            "icon": "fa-certificate",
+            "color": "cyan",
+            "title": "Cybersecurity Certification",
+            "org": "Specialized Training",
+            "desc": "Comprehensive hands-on training covering penetration testing methodologies, risk mitigation, and network defenses.",
+            "status": "Status: Completed",
+            "proofUrl": ""
+        },
+        {
+            "icon": "fa-graduation-cap",
+            "color": "green",
+            "title": "Computer Science Diploma",
+            "org": "Computer Institute",
+            "desc": "Academic foundation in algorithms, computing architecture, database management, and system administration.",
+            "status": "Status: Graduated",
+            "proofUrl": ""
+        },
+        {
+            "icon": "fa-language",
+            "color": "purple",
+            "title": "Advanced English Qualification",
+            "org": "Professional Level",
+            "desc": "Fluent technical & business communication capabilities for international team environments and documentation.",
+            "status": "Level: C1/Advanced",
+            "proofUrl": ""
+        },
+        {
+            "icon": "fa-screwdriver-wrench",
+            "color": "yellow",
+            "title": "Hardware & Mobile Specialist",
+            "org": "Certified Technician",
+            "desc": "Advanced diagnostics certification for mobile hardware repair, component analysis, and system recovery.",
+            "status": "Status: Certified",
+            "proofUrl": ""
+        }
+    ],
+    "projects": [
+        {
+            "id": 1,
+            "category": "network",
+            "title": "Wi-Fi Protocol Security & Packet Analysis Lab",
+            "tags": [
+                "Wireshark",
+                "Network Sec",
+                "WPA3"
+            ],
+            "summary": "Deep analysis of wireless handshakes and vulnerability audit in legacy corporate Wi-Fi infrastructures.",
+            "details": "Conducted an auditing exercise analyzing 802.11 frames using Wireshark and Tshark. Identified misconfigurations in enterprise access points and authored mitigation strategies for rogue AP detection.",
+            "link": ""
+        },
+        {
+            "id": 2,
+            "category": "osint",
+            "title": "OSINT Intelligence & Asset Discovery Methodology",
+            "tags": [
+                "OSINT",
+                "Reconnaissance",
+                "Maltego"
+            ],
+            "summary": "Automated open-source intelligence framework for corporate footprint mapping and threat identification.",
+            "details": "Built custom Python scripts connecting to public APIs and search engines to map external attack surfaces without triggering active network alerts. Generated structured risk exposure reports.",
+            "link": ""
+        },
+        {
+            "id": 3,
+            "category": "hardware",
+            "title": "Mobile OS Kernel & Diagnostics Research",
+            "tags": [
+                "Hardware",
+                "Android",
+                "Firmware"
+            ],
+            "summary": "Component-level mobile hardware diagnostic procedure and secure recovery environment setup.",
+            "details": "Documented low-level hardware diagnostics for mobile processors and NAND memory. Created an isolated flashing and recovery workflow for compromised mobile endpoints.",
+            "link": ""
+        },
+        {
+            "id": 4,
+            "category": "network",
+            "title": "Web App Vulnerability Assessment & CSRF Audit",
+            "tags": [
+                "Burp Suite",
+                "OWASP Top 10",
+                "Web Sec"
+            ],
+            "summary": "Comprehensive penetration test report evaluating authentication mechanisms and access controls.",
+            "details": "Identified cross-site request forgery and IDOR vulnerabilities on custom web applications. Authored remediation patches for developer implementation.",
+            "link": ""
+        }
+    ],
+    "cli": {
+        "help": "Available commands: whoami, skills, certs, projects, contact, clear",
+        "whoami": "Atheen Khalil | Cybersecurity Specialist & Hardware Diagnostics Engineer.",
+        "skills": "Network Auditing, Wireshark, Burp Suite, OSINT, Hardware Diagnostics, Linux Kernel.",
+        "certs": "Cybersecurity Cert, Computer Science Diploma, C1 English, Mobile Repairs Cert.",
+        "projects": "Case studies are listed in the projects section above.",
+        "contact": "Use the contact form below to reach me."
+    }
+};/*CONFIG_END*/
+
+// =====================================================================
+//  الكود (ما بتحتاج تعدل تحت هالخط)
+// =====================================================================
+
+// Escape any text before putting it in HTML
+function esc(value) {
+    return String(value).replace(/[&<>"']/g, ch => (
+        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]
+    ));
+}
+
+// Only allow http(s) links (blocks javascript: URLs)
+function safeUrl(url) {
+    try {
+        const u = new URL(url, location.href);
+        return (u.protocol === 'https:' || u.protocol === 'http:') ? u.href : '';
+    } catch (e) { return ''; }
+}
+
+const TEXT_COLOR = {
+    cyan: 'text-cyber-cyan', green: 'text-cyber-green', purple: 'text-purple-400',
+    yellow: 'text-yellow-400', gray: 'text-gray-300'
+};
+const BAR_COLOR = { cyan: 'bg-cyber-cyan', green: 'bg-cyber-green' };
+
+// ---------- Skills ----------
+function renderSkills() {
+    const grid = document.getElementById('skills-grid');
+    grid.innerHTML = CONFIG.skills.map(group => `
+        <div class="bg-cyber-dark p-6 rounded-xl border border-cyber-border">
+            <h3 class="text-lg font-mono font-bold ${TEXT_COLOR[group.color] || TEXT_COLOR.cyan} mb-4 flex items-center gap-2">
+                <i class="fa-solid ${esc(group.icon)}"></i> ${esc(group.title)}
+            </h3>
+            <div class="space-y-4">
+                ${group.items.map(s => {
+                    const v = Math.max(0, Math.min(100, Number(s.value) || 0));
+                    return `
+                    <div>
+                        <div class="flex justify-between text-sm font-mono mb-1">
+                            <span class="text-gray-300">${esc(s.label)}</span>
+                            <span class="${TEXT_COLOR[s.color] || TEXT_COLOR.cyan}">${v}%</span>
+                        </div>
+                        <div class="w-full bg-cyber-black rounded-full h-2">
+                            <div class="${BAR_COLOR[s.color] || BAR_COLOR.cyan} h-2 rounded-full" style="width: ${v}%"></div>
+                        </div>
+                    </div>`;
+                }).join('')}
+            </div>
+        </div>`).join('');
+}
+
+// ---------- Tools ----------
+function renderTools() {
+    document.getElementById('tools-list').innerHTML = CONFIG.tools.map(t => `
+        <span class="px-3 py-1.5 rounded bg-cyber-dark border border-cyber-border ${TEXT_COLOR[t.color] || TEXT_COLOR.gray} flex items-center gap-2">
+            <i class="${esc(t.icon)}"></i> ${esc(t.label)}
+        </span>`).join('');
+}
+
+// ---------- Credentials ----------
+function renderCredentials() {
+    document.getElementById('credentials-grid').innerHTML = CONFIG.credentials.map(c => {
+        const proof = safeUrl(c.proofUrl);
+        return `
+        <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border hover:border-cyber-cyan transition-all flex flex-col justify-between">
+            <div>
+                <div class="${TEXT_COLOR[c.color] || TEXT_COLOR.cyan} text-2xl mb-4"><i class="fa-solid ${esc(c.icon)}"></i></div>
+                <h3 class="font-bold text-white text-lg mb-1">${esc(c.title)}</h3>
+                <p class="text-xs font-mono text-gray-400 mb-3">${esc(c.org)}</p>
+                <p class="text-gray-400 text-sm">${esc(c.desc)}</p>
+            </div>
+            <div class="mt-4 pt-4 border-t border-cyber-border/50 flex items-center justify-between font-mono text-xs ${proof ? 'text-cyber-green' : 'text-gray-400'}">
+                <span>${esc(c.status)}</span>
+                ${proof
+                    ? `<a href="${esc(proof)}" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center gap-1">View proof <i class="fa-solid fa-circle-check"></i></a>`
+                    : ''}
+            </div>
+        </div>`;
+    }).join('');
+}
+
+// ---------- Social links ----------
+function renderSocial() {
+    const box = document.getElementById('social-links');
+    const links = [
+        { url: safeUrl(CONFIG.social.github),   icon: 'fa-brands fa-github',   title: 'GitHub' },
+        { url: safeUrl(CONFIG.social.linkedin), icon: 'fa-brands fa-linkedin', title: 'LinkedIn' },
+        { url: CONFIG.contact.email ? 'mailto:' + encodeURIComponent(CONFIG.contact.email).replace('%40', '@') : '',
+          icon: 'fa-solid fa-envelope', title: 'Email' }
+    ].filter(l => l.url);
+    box.innerHTML = links.map(l =>
+        `<a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-cyan transition-colors" title="${l.title}"><i class="${l.icon}"></i></a>`
+    ).join('');
+}
+
+// ---------- Projects (filter + search work together) ----------
+let activeFilter = 'all';
+let searchQuery = '';
+
+function renderProjects() {
+    const q = searchQuery.toLowerCase();
+    const items = CONFIG.projects.filter(p =>
+        (activeFilter === 'all' || p.category === activeFilter) &&
+        (!q || p.title.toLowerCase().includes(q) || p.summary.toLowerCase().includes(q) ||
+            p.tags.some(t => t.toLowerCase().includes(q)))
+    );
+    const container = document.getElementById('projects-grid');
+    if (!items.length) {
+        container.innerHTML = '<p class="text-gray-500 font-mono text-sm col-span-full">No write-ups match your search.</p>';
+        return;
+    }
+    container.innerHTML = items.map(item => `
+        <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border hover:border-cyber-cyan transition-all flex flex-col justify-between group">
+            <div>
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-mono text-cyber-cyan uppercase font-semibold">${esc(item.category)}</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-cyber-cyan transition-colors text-xs"></i>
+                </div>
+                <h3 class="font-bold text-white text-lg mb-2 group-hover:text-cyber-cyan transition-colors">${esc(item.title)}</h3>
+                <p class="text-gray-400 text-sm mb-4">${esc(item.summary)}</p>
+            </div>
+            <div>
+                <div class="flex flex-wrap gap-2 mb-4 font-mono text-xs">
+                    ${item.tags.map(t => `<span class="px-2 py-0.5 rounded bg-cyber-dark border border-cyber-border text-gray-300">${esc(t)}</span>`).join('')}
+                </div>
+                <button data-project="${esc(item.id)}" class="open-project w-full py-2 rounded bg-cyber-dark border border-cyber-border text-xs font-mono text-cyber-cyan hover:bg-cyber-cyan hover:text-cyber-black transition-all">
+                    Read Full Write-up
+                </button>
+            </div>
+        </div>`).join('');
+}
+
+document.getElementById('projects-grid').addEventListener('click', e => {
+    const btn = e.target.closest('.open-project');
+    if (btn) openModal(btn.dataset.project);
+});
+
+// ---------- Modal ----------
+const modal = document.getElementById('project-modal');
+
+function openModal(id) {
+    const project = CONFIG.projects.find(p => String(p.id) === String(id));
+    if (!project) return;
+    document.getElementById('modal-title').textContent = project.title;
+    document.getElementById('modal-tags').innerHTML = project.tags.map(t =>
+        `<span class="px-2 py-0.5 rounded bg-cyber-dark border border-cyber-border text-cyber-cyan">${esc(t)}</span>`).join('');
+    const content = document.getElementById('modal-content');
+    content.textContent = project.details;
+    const link = safeUrl(project.link);
+    if (link) {
+        const a = document.createElement('a');
+        a.href = link; a.target = '_blank'; a.rel = 'noopener noreferrer';
+        a.className = 'block text-cyber-cyan font-mono text-xs hover:underline pt-2';
+        a.textContent = 'View full project →';
+        content.appendChild(a);
+    }
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+function closeModal() {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+}
+document.getElementById('modal-close').addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('active', 'text-cyber-cyan', 'bg-cyber-card');
+            b.classList.add('text-gray-400');
+        });
+        btn.classList.add('active', 'text-cyber-cyan', 'bg-cyber-card');
+        btn.classList.remove('text-gray-400');
+        activeFilter = btn.dataset.filter;
+        renderProjects();
+    });
+});
+document.getElementById('project-search').addEventListener('input', e => {
+    searchQuery = e.target.value.trim();
+    renderProjects();
+});
+
+// ---------- Interactive CLI (all output via textContent, no HTML injection) ----------
+const cliConsole = document.getElementById('cli-console');
+const cliForm = document.getElementById('cli-form');
+const cliInput = document.getElementById('cli-input');
+
+cliForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const raw = cliInput.value.trim();
+    cliInput.value = '';
+    if (!raw) return;
+    const cmd = raw.toLowerCase();
+
+    const userLine = document.createElement('div');
+    const prompt = document.createElement('span');
+    prompt.className = 'text-cyber-green';
+    prompt.textContent = 'user@visitor:~$ ';
+    const typed = document.createElement('span');
+    typed.className = 'text-white';
+    typed.textContent = raw.slice(0, 200);
+    userLine.append(prompt, typed);
+    cliConsole.appendChild(userLine);
+
+    if (cmd === 'clear') {
+        cliConsole.textContent = '';
+        const note = document.createElement('div');
+        note.className = 'text-gray-500';
+        note.textContent = 'Console cleared. Type "help" for commands.';
+        cliConsole.appendChild(note);
+        return;
+    }
+
+    const res = document.createElement('div');
+    if (Object.prototype.hasOwnProperty.call(CONFIG.cli, cmd)) {
+        res.className = 'text-cyber-cyan pl-3 border-l border-cyber-cyan';
+        res.textContent = CONFIG.cli[cmd];
+    } else {
+        res.className = 'text-cyber-red pl-3 border-l border-cyber-red';
+        res.textContent = `Command not recognized: '${raw.slice(0, 60)}'. Type 'help' for options.`;
+    }
+    cliConsole.appendChild(res);
+    cliConsole.scrollTop = cliConsole.scrollHeight;
+});
+
+// ---------- Contact form (real sending) ----------
+const contactForm = document.getElementById('contact-form');
+const alertBox = document.getElementById('contact-alert');
+
+function showAlert(message, ok) {
+    alertBox.textContent = message;
+    alertBox.className = 'mt-4 p-3 rounded font-mono text-xs border ' + (ok
+        ? 'bg-cyber-green/10 border-cyber-green text-cyber-green'
+        : 'bg-cyber-red/10 border-cyber-red text-cyber-red');
+    clearTimeout(showAlert.t);
+    showAlert.t = setTimeout(() => alertBox.classList.add('hidden'), 6000);
+}
+
+contactForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const name = contactForm.elements['name'].value.trim();
+    const email = contactForm.elements['email'].value.trim();
+    const message = contactForm.elements['message'].value.trim();
+    const endpoint = safeUrl(CONFIG.contact.formEndpoint);
+
+    if (endpoint) {
+        const btn = contactForm.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        try {
+            const r = await fetch(endpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({ name, email, message, _gotcha: contactForm.elements['_gotcha'].value })
+            });
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            contactForm.reset();
+            showAlert('[SUCCESS] Message transmitted successfully.', true);
+        } catch (err) {
+            showAlert('[ERROR] Message could not be sent. Please try again later.', false);
+        } finally {
+            btn.disabled = false;
+        }
+    } else if (CONFIG.contact.email) {
+        const subject = encodeURIComponent('Portfolio contact from ' + name);
+        const body = encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')');
+        window.location.href = 'mailto:' + CONFIG.contact.email + '?subject=' + subject + '&body=' + body;
+        showAlert('[OK] Opening your email app...', true);
+    } else {
+        showAlert('[ERROR] Contact is not configured yet.', false);
+    }
+});
+
+// ---------- Mobile menu ----------
+document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+});
+document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden'));
+});
+
+// ---------- Init ----------
+renderSkills();
+renderTools();
+renderCredentials();
+renderSocial();
+renderProjects();
+
+    </script>
+</body>
+</html>
